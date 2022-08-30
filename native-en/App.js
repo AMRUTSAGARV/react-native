@@ -1,28 +1,84 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { Button, Linking, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  Linking,
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 export default function App() {
-  const [name, setName] = useState("Amrutsagar!");
-  const [session, setSession] = useState({ number: 6, title: "state" });
-  const [current, setCurrent] = useState(true);
-
-  const onClickHandler = () => {
-    setName("Style tes doing!");
+  const [items, setItems] = useState([
+    {
+      key: 1,
+      item: "ITEM 1",
+    },
+    {
+      key: 2,
+      item: "ITEM 2",
+    },
+    {
+      key: 3,
+      item: "ITEM 3",
+    },
+    {
+      key: 4,
+      item: "ITEM 4",
+    },
+    {
+      key: 5,
+      item: "ITEM 5",
+    },
+    {
+      key: 6,
+      item: "ITEM 6",
+    },
+    {
+      key: 7,
+      item: "ITEM 7",
+    },
+    {
+      key: 8,
+      item: "ITEM 8",
+    },
+    {
+      key: 9,
+      item: "ITEM 9",
+    },
+    {
+      key: 10,
+      item: "ITEM 10",
+    },
+  ]);
+  const [Refreshing, setRefreshing] = useState(false);
+  const onRefresh = () => {
+    setRefreshing(true);
+    setItems([...items, { key: 69, item: "ITEM 69" }]);
+    setRefreshing(false);
   };
 
   return (
-    <View style={styles.body}>
-      <View style={styles.view1}>
-        <Text style={styles.text}>1</Text>
-      </View>
-      <View style={styles.view2}>
-        <Text style={styles.text}>2</Text>
-      </View>
-      <View style={styles.view3}>
-        <Text style={styles.text}>3</Text>
-      </View>
-    </View>
+    <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={Refreshing}
+          onRefresh={onRefresh}
+          colors={["#ff00ff"]}
+        />
+      }
+      style={styles.body}
+    >
+      {items.map((i) => {
+        return (
+          <View style={styles.item} key={i.id}>
+            <Text style={styles.text}>{i.item}</Text>
+          </View>
+        );
+      })}
+    </ScrollView>
   );
 }
 
@@ -31,31 +87,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     backgroundColor: "yellow",
-    alignItems: "center",
-    justifyContent: "space-evenly",
   },
-  view1: {
-    width: 100,
-    height: 100,
-
-    backgroundColor: "red",
-    alignItems: "center",
+  item: {
+    margin: 10,
+    backgroundColor: "white",
     justifyContent: "center",
-  },
-  view2: {
-    width: 100,
-    height: 100,
-
-    backgroundColor: "black",
     alignItems: "center",
-    justifyContent: "center",
-  },
-  view3: {
-    width: 100,
-    height: 100,
-    backgroundColor: "orange",
-    alignItems: "center",
-    justifyContent: "center",
   },
   text: {
     color: "#000000",
