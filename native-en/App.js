@@ -3,44 +3,64 @@ import { useState } from "react";
 import { Button, Linking, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
-  const [name, setName] = useState("Mash");
+  const [name, setName] = useState("Amrutsagar!");
   const [session, setSession] = useState({ number: 6, title: "state" });
   const [current, setCurrent] = useState(true);
 
   const onClickHandler = () => {
-    setName("Programming with Amrut");
-    setSession({ number: 7, title: "state changed" });
-    setCurrent(false);
+    setName("Style tes doing!");
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>This is {name}'s channel</Text>
-      <Text style={styles.text}>
-        This is session number {session.number} {session.title}
-      </Text>
-      <Text style={styles.text}>
-        {current ? "current session" : "next session"}
-      </Text>
-      <Button
-        style={styles.btn}
-        title="click to check"
-        onPress={onClickHandler}
-      ></Button>
+    <View style={styles.body}>
+      <View style={styles.view1}>
+        <Text style={styles.text}>1</Text>
+      </View>
+      <View style={styles.view2}>
+        <Text style={styles.text}>2</Text>
+      </View>
+      <View style={styles.view3}>
+        <Text style={styles.text}>3</Text>
+      </View>
     </View>
   );
 }
-//#C4E8C2 #AECFA4 #6BBD99
 
 const styles = StyleSheet.create({
-  container: {
+  body: {
     flex: 1,
-    backgroundColor: "#C4E8C2",
+    flexDirection: "column",
+    backgroundColor: "yellow",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  view1: {
+    width: 100,
+    height: 100,
+
+    backgroundColor: "red",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  view2: {
+    width: 100,
+    height: 100,
+
+    backgroundColor: "black",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  view3: {
+    width: 100,
+    height: 100,
+    backgroundColor: "orange",
     alignItems: "center",
     justifyContent: "center",
   },
   text: {
-    color: "#6BBD99",
+    color: "#000000",
+    fontSize: 35,
+    fontStyle: "italic",
     margin: 10,
   },
 });
